@@ -7,6 +7,6 @@ int main(void) {
     printf("Please input your height(cm) and weight(kg) in turn.");
     scanf("%lf %lf", &height, &weight);
     double BMI = weight / (height*height) * 10000;
-    printf("Your BMI is %2f", BMI);
+    printf("Your BMI is %.2f", BMI);
     return 0;
 }
