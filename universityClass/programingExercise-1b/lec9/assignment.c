@@ -23,6 +23,7 @@ lev = 2:
 #include <math.h>
 
 char** createPattern(int lev, int cnt, char** pattern) {
+    // メモリの確保
     int size = pow(3, cnt);
     char** newPattern = (char**)malloc(size * sizeof(char*));
     for (int i = 0; i < size; i++) {
@@ -53,6 +54,7 @@ char** createPattern(int lev, int cnt, char** pattern) {
             }
         }   
     }
+    // 指定したレベルまでの模様ができたらリターン
     if (lev == cnt) {
         return newPattern;
     }
