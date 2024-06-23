@@ -1,12 +1,12 @@
 /*
 以下のようなフラクタル模様を作成する
-lev = 0:
+n = 0:
     #
-lev = 1:
+n = 1:
     ###
     #.#
     ###
-lev = 2:
+n = 2:
     #########
     #.##.##.#
     #########
@@ -22,7 +22,7 @@ lev = 2:
 #include <stdlib.h>
 #include <math.h>
 
-char** createPattern(int lev, int cnt, char** pattern) {
+char** createPattern(int n, int cnt, char** pattern) {
     int size = pow(3, cnt);
     char** newPattern = (char**)malloc(size * sizeof(char*));
     for (int i = 0; i < size; i++) {
@@ -53,21 +53,21 @@ char** createPattern(int lev, int cnt, char** pattern) {
             }
         }   
     }
-    if (lev == cnt) {
+    if (n == cnt) {
         return newPattern;
     }
-    return createPattern(lev, cnt + 1, newPattern);
+    return createPattern(n, cnt + 1, newPattern);
 }
 
 int main(void) {
-    int lev;
+    int n;
     char** pattern;
-    scanf("%d", &lev);
+    scanf("%d", &n);
 
-    pattern = createPattern(lev, 0, NULL);
+    pattern = createPattern(n, 0, NULL);
     
-    for (int row = 0; row < pow(3, lev); row++) {
-        for (int col = 0; col < pow(3, lev); col++) {
+    for (int row = 0; row < pow(3, n); row++) {
+        for (int col = 0; col < pow(3, n); col++) {
             printf("%c", pattern[row][col]);
         }
         puts("\n");
