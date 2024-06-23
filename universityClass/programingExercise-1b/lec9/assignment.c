@@ -40,7 +40,7 @@ char** createPattern(int n, int cnt, char** pattern) {
                     if (x == 1 && y == 1) {
                         newPattern[row + BASE_X_INDEX][col + BASE_Y_INDEX] = '.';
                     } 
-                    // 3*3に分けた要素の内、中央以外の箇所それぞれに1レベル前の全体をコピーする
+                    // 3*3に分けた要素の内、中央以外の箇所それぞれにn-1の全体をコピーする
                     else {
                         // レベル0のときのベースケース
                         if (pattern == NULL) {
