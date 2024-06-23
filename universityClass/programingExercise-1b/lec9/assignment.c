@@ -22,7 +22,12 @@ n = 2:
 #include <stdlib.h>
 #include <math.h>
 
+<<<<<<< HEAD
 char** createPattern(int n, int cnt, char** pattern) {
+=======
+char** createPattern(int lev, int cnt, char** pattern) {
+    // メモリの確保
+>>>>>>> origin/main
     int size = pow(3, cnt);
     char** newPattern = (char**)malloc(size * sizeof(char*));
     for (int i = 0; i < size; i++) {
@@ -53,7 +58,12 @@ char** createPattern(int n, int cnt, char** pattern) {
             }
         }   
     }
+<<<<<<< HEAD
     if (n == cnt) {
+=======
+    // 指定したレベルまでの模様ができたらリターン
+    if (lev == cnt) {
+>>>>>>> origin/main
         return newPattern;
     }
     return createPattern(n, cnt + 1, newPattern);
