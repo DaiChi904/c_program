@@ -6,11 +6,12 @@ int main(void) {
     char numary[26] = {};
     for (char c = 'A'; c <= 'Z'; c++) {
         int cnt = 0;
-        for (int i = 0; str[i] != '\n'; i++)
-        if (str[i] == c) {
-            cnt++;
+        for (int i = 0; str[i] != '\0'; i++) {
+            if (str[i] == c) {
+                cnt++;
+            };
+            numary[c - 'A'] = cnt;
         };
-        numary[c - 'A'] = cnt;
     };
 
     int max_count = numary[0];
