@@ -35,28 +35,44 @@ int area_of(Rectangle r)
     return abs(r.p1.x - r.p2.x) * abs(r.p1.y - r.p2.y);
 }
 
-//--- 矩形の全辺の長さの合計を計算する ---//
-int circumference_of(const Rectangle r)
+//--- 2つの矩形の共有する領域の左上限の座標と右下限の座標を求める ---//
+Rectangle shared_area_point(Rectangle r1, Rectangle r2)
 {
-    return 2 * (abs(r.p1.x - r.p2.x) + abs(r.p1.y - r.p2.y));
+    Point p1, p2, p_shared;
+    int temp1, temp2;
+    Rectangle r;
+
+    r.p1.x = abs(r1.p1.x - r2.p1.x);
+    r.p1.y = abs(r1.p1.y - r2.p1.y);
+
+    r.p2.x = abs(r1.p2.x - r2.p2.x);
+    r.p2.y = abs(r1.p2.y - r2.p2.y);
+
+    r.p1 = p1;
+    r.p2 = p2;
+
+    return r;
 }
 
 int main(void)
 {
-    Rectangle r; // 矩形
+    Rectangle r1, r2, r_shared; // 矩形
 
     puts("左上限と右下限の座標を入力してください");
-    
+
     puts("短形１");
     puts("座標１");
-    r.p1 = scan_point();
+    r1.p1 = scan_point();
     puts("座標２");
-    r.p2 = scan_point();
-
+    r1.p2 = scan_point();
     puts("短形２");
+    puts("座標１");
+    r2.p1 = scan_point();
+    puts("座標２");
+    r2.p2 = scan_point();
 
-    printf("面積は%dです。\n", area_of(r));
-    printf("周囲の長さは%dです。\n", circumference_of(r));
+    r_shared = shared_area_point(r1, r2);
+    printf("面積は%dです。\n", area_of(r_shared));
 
     return 0;
 }
