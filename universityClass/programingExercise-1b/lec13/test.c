@@ -14,7 +14,8 @@ typedef struct
     Coordinate botomRight;
 } Rectangle;
 
-Rectangle createRectangle(void) {
+Rectangle createRectangle(void)
+{
     Coordinate p1, p2;
     Rectangle r;
     puts("Input tow coordinates.");
@@ -30,12 +31,15 @@ Rectangle createRectangle(void) {
     printf("y");
     scanf("%d", &p2.y);
 
-    if (p1.x >= p2.x && p1.y >= p2.y) {
+    if (p1.x >= p2.x && p1.y >= p2.y)
+    {
         r.topLeft = p1;
         r.topRight = (Coordinate){p1.x, p2.y};
         r.botomRight = p2;
         r.topRight = (Coordinate){p2.y, p1.x};
-    } else {
+    }
+    else
+    {
         r.topLeft = p2;
         r.topRight = (Coordinate){p2.y, p1.x};
         r.botomRight = p1;
