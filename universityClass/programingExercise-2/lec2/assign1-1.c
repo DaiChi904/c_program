@@ -10,7 +10,12 @@ struct Cell
 };
 
 struct Cell *stack;
-int stackInUse = 0;
+int stackInUse;
+
+// Initialize the count of stackInUse
+void initStack() {
+    stackInUse = 0;
+}
 
 // Check is stack empty or not.
 int isStackEmpty()
