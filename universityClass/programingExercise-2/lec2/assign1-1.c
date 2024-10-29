@@ -10,7 +10,7 @@ struct Cell
 };
 
 struct Cell *stack;
-int stackInUse;
+int stackInUse = 0;
 
 // Check is stack empty or not.
 int isStackEmpty()
