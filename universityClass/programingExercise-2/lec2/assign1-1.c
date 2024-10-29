@@ -77,6 +77,8 @@ int main(int argc, char *argv[])
     char *input = argv[1]; // Argument from command line.
     char carryString[100]; // Buffer to store argument.
 
+    initStack();
+
     if (argc <= 1)
     {
         fprintf(stderr, "##### Input RPN as a command line argumet.\n");
