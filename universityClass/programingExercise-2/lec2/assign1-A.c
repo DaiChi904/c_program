@@ -60,6 +60,7 @@ int main(int argc, char *argv[])
     }
 
     init_stack();
+    
     while (strlen(input) > 0)
     { // コマンドライン引数の末尾に至るまで
         int ret = sscanf(input, "%s", curr_string);
