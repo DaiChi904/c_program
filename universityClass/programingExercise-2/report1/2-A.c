@@ -132,11 +132,12 @@ void reversedDfs(int start, int *reversedVisited, Graph *g, AdjacencyMatrix *mat
     {
         if ((*mat)[i][start] && !reversedVisited[i])
         {
-            rdfs(i, reversedVisited, g, mat);
+            reversedDfs(i, reversedVisited, g, mat);
         }
     }
 }
 
+// Check is passed adjacency matrix is strongly connected.
 int isStronglyConnected(int *visited, int *reversedVisited, Graph *g, AdjacencyMatrix *a)
 {
     int start = 0;
@@ -183,11 +184,11 @@ int main(int argc, char *argv[])
 
     if (isStronglyConnected(visited, reversedVisited, &g, &a))
     {
-        printf("y\n");
+        printf("The adjacency matrix is strongly connected.\n");
     }
     else
     {
-        printf("n\n");
+        printf("The adjacency matrix is not strongly connected.\n");
     }
 
     printGraph(&g);
