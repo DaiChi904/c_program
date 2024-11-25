@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <malloc.h>
 
+// ! Important: 0 means false, 1 means true 
+
 // The maximum size which this program can process.
 #define MAX_GRAPH_SIZE 30
 
@@ -148,7 +150,7 @@ int isStronglyConnected(int *visited, int *reversedVisited, Graph *g, AdjacencyM
     {
         if (!visited[i])
         {
-            return 0; // Reached to none of vertex.
+            return 0;
         }
     }
 
@@ -158,7 +160,7 @@ int isStronglyConnected(int *visited, int *reversedVisited, Graph *g, AdjacencyM
     {
         if (!reversedVisited[i])
         {
-            return 0; // Reached to none of vertex.
+            return 0;
         }
     }
 
