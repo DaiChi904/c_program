@@ -37,7 +37,7 @@ int readAdjacencyMatrix(char *datafile, AdjacencyMatrix mat)
     fscanf(fp, "%d\n", &vertexNum);
     if (vertexNum > MAX_GRAPH_SIZE)
     {
-        fprintf(stderr, "##### This programm cannot process the size of graph which over %d.\n", MAX_GRAPH_SIZE);
+        fprintf(stderr, "##### This programm cannot process the size of graph which is over %d.\n", MAX_GRAPH_SIZE);
         exit(1);
     }
     for (src = 0; src < vertexNum; src++)
