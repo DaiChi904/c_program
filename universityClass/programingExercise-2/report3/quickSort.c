@@ -7,7 +7,7 @@ double getTime()
 {
     struct timeval tp;
     double ret;
-    gettimeofday(&tp, NULL); // 1970/1/1 0:00 からの経過時刻を取得
+    gettimeofday(&tp, NULL);
     ret = (double)(tp.tv_sec & 0x00ffffff) + (double)tp.tv_usec / 1000000;
     return ret;
 }
@@ -16,21 +16,20 @@ void subSort(int array[], int lower, int upper)
 {
     int i = lower;
     int j = upper;
-    int base = array[(lower + upper) / 2]; // ピボット選択
+    int base = array[(lower + upper) / 2];
 
     do
     {
         while (array[i] < base)
         {
-            i++; // 左側から探索
+            i++;
         }
         while (array[j] > base)
         {
-            j--; // 右側から探索
+            j--;
         }
         if (i <= j)
         {
-            // 要素をスワップ
             int buffer = array[i];
             array[i] = array[j];
             array[j] = buffer;
@@ -39,7 +38,6 @@ void subSort(int array[], int lower, int upper)
         }
     } while (i <= j);
 
-    // 再帰呼び出し
     if (lower < j)
     {
         subSort(array, lower, j);
@@ -60,26 +58,26 @@ double quickSort(int array[], int dataAmount)
 
 int main(int argc, char *argv[])
 {
-    char *datafile; // 入力データのファイル名
-    FILE *fp;       // 入力データのファイルポインタ
-    int dataAmount; // 入力データのデータ数
-    int *data;      // 入力データ格納場所
+    char *datafile;
+    FILE *fp;
+    int dataAmount;
+    int *data;
 
     if (argc <= 1)
     {
-        fprintf(stderr, "##### ファイルを指定してください\n");
+        fprintf(stderr, "##### Please specify file.\n");
         return 1;
     }
     datafile = argv[1];
 
     if (argc <= 2)
     {
-        fprintf(stderr, "##### データ数を指定してください\n");
+        fprintf(stderr, "##### Please specify data amount.\n");
         return 1;
     }
     dataAmount = atoi(argv[2]);
 
-    data = (int *)malloc(dataAmount * sizeof(int)); // データ格納場所の確保
+    data = (int *)malloc(dataAmount * sizeof(int));
     fp = fopen(datafile, "r");
     for (int i = 0; i < dataAmount; i++)
     {
@@ -88,7 +86,7 @@ int main(int argc, char *argv[])
     fclose(fp);
 
     double timeOfQuickSort = quickSort(data, dataAmount);
-    fprintf(stderr, "クイックソートの実行時間 = %lf[秒]\n", timeOfQuickSort);
+    fprintf(stderr, "Quick sort run time = %lf[sec]\n", timeOfQuickSort);
 
     free(data);
 

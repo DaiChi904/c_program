@@ -3,9 +3,8 @@
 #include <malloc.h>
 #include <sys/time.h>
 
-int *gamma; // γ: 一時的なデータ置き場(教科書 p.71 13 行目「余分の記憶容量」のこと)
+int *gamma; // Temporal store exectuing merge sort.
 
-// 教科書 p.70 alpha[0, 1, ..., n−1], beta[0, 1, ..., m−1] をマージ
 int *merge(int *alpha, int n, int *beta, int m)
 {
     int gammaInUse = 0;
@@ -46,7 +45,7 @@ int *merge(int *alpha, int n, int *beta, int m)
             j++;
         }
     }
-    // 教科書ではγそのものを return しているが,γは一時的な格納場所なのでαやβに書き戻す
+
     for (i = 0; i < n; i++)
     {
         alpha[i] = gamma[i];
@@ -70,21 +69,21 @@ int *mergeSort(int *alpha, int i, int j)
 
 int main(int argc, char *argv[])
 {
-    char *datafile; // 入力データのファイル名
-    FILE *fp;       // 入力データのファイルポインタ
-    int dataAmount; // 入力データのデータ数
-    int *data;      // 入力データ格納場所
+    char *datafile;
+    FILE *fp;
+    int dataAmount;
+    int *data;
 
     if (argc <= 1)
     {
-        fprintf(stderr, "##### ファイルを指定してください\n");
+        fprintf(stderr, "##### Please specify file.\n");
         return 1;
     }
     datafile = argv[1];
 
     if (argc <= 2)
     {
-        fprintf(stderr, "##### データ数を指定してください\n");
+        fprintf(stderr, "##### Please specify data amount.\n");
         return 1;
     }
     dataAmount = atoi(argv[2]);
@@ -101,7 +100,7 @@ int main(int argc, char *argv[])
     double startTime = getTime();
     data = mergeSort(data, 0, dataAmount - 1);
     double endTime = getTime();
-    fprintf(stderr, "マージソートの実行時間 = %lf[秒]\n", endTime - startTime);
+    fprintf(stderr, "Merge sort run time = %lf[sec]\n", endTime - startTime);
 
     free(data);
     free(gamma);

@@ -3,14 +3,11 @@
 #include <malloc.h>
 #include <sys/time.h>
 
-/**
- * 1970/1/1 0:00 からの経過時刻を double 型で返す関数
- */
 double getTime()
 {
     struct timeval tp;
     double ret;
-    gettimeofday(&tp, NULL); // 1970/1/1 0:00 からの経過時刻を取得
+    gettimeofday(&tp, NULL);
     ret = (double)(tp.tv_sec & 0x00ffffff) + (double)tp.tv_usec / 1000000;
     return ret;
 }
@@ -21,17 +18,17 @@ double bubbleSort(int *a, int n)
 
     for (int i = 1; i < n; i++)
     {
-        for (int j = n - 1; j >= i; j--)
+        for (int j = 0; j < n - i; j++)
         {
-            if (a[j - 1] > a[j])
+            if (a[j + 1] < a[j])
             {
-                int x = a[j - 1];
-                a[j - 1] = a[j];
-                a[j] = x;
+                int x = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = x;
             }
         }
     }
-
+    
     double endTime = getTime();
 
     return endTime - startTime;
@@ -39,26 +36,26 @@ double bubbleSort(int *a, int n)
 
 int main(int argc, char *argv[])
 {
-    char *datafile; // 入力データのファイル名
-    FILE *fp;       // 入力データのファイルポインタ
-    int dataAmount; // 入力データのデータ数
-    int *data;      // 入力データ格納場所
+    char *datafile;
+    FILE *fp;
+    int dataAmount;
+    int *data;
 
     if (argc <= 1)
     {
-        fprintf(stderr, "##### ファイルを指定してください\n");
+        fprintf(stderr, "##### Please specify file.\n");
         return 1;
     }
     datafile = argv[1];
 
     if (argc <= 2)
     {
-        fprintf(stderr, "##### データ数を指定してください\n");
+        fprintf(stderr, "##### Please specify data amount.\n");
         return 1;
     }
     dataAmount = atoi(argv[2]);
 
-    data = (int *)malloc(dataAmount * sizeof(int)); // データ格納場所の確保
+    data = (int *)malloc(dataAmount * sizeof(int));
     fp = fopen(datafile, "r");
     for (int i = 0; i < dataAmount; i++)
     {
@@ -67,7 +64,8 @@ int main(int argc, char *argv[])
     fclose(fp);
 
     double timeOfBubble = bubbleSort(data, dataAmount);
-    fprintf(stderr, "バブルソートの実行時間 = %lf[秒]\n", timeOfBubble);
+    fprintf(stderr, "Bubble sort run time = %lf[sec]\n", timeOfBubble);
+
     free(data);
 
     return 0;
