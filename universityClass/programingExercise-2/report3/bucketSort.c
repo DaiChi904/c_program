@@ -12,20 +12,35 @@ double getTime()
     return ret;
 }
 
-double bucketSort(int array[], int bucket[], int dataAmount, int max) {
+double bucketSort(int array[], int dataAmount, int max)
+{
     double startTime = getTime();
-    for (int i = 0; i < dataAmount; i++) {
-        if (array[i] < max) {
-            bucket[array[i]] = bucket[array[i]] + 1;
+    int *bucket = (int *)malloc((max + 1) * sizeof(int));
+
+    for (int i = 0; i <= max; i++)
+    {
+        bucket[i] = 0;
+    }
+
+    for (int i = 0; i < dataAmount; i++)
+    {
+        if (array[i] <= max)
+        {
+            bucket[array[i]]++;
         }
     }
+
     int index = 0;
-    for (int i = 0; i < max; i++) {
-        for (int j = 0; j < bucket[i]; j++) {
-            array[index] = bucket[i];
+    for (int i = 0; i <= max; i++)
+    {
+        for (int j = 0; j < bucket[i]; j++)
+        {
+            array[index] = i;
             index++;
         }
     }
+
+    free(bucket);
     double endTime = getTime();
 
     return endTime - startTime;
@@ -37,7 +52,6 @@ int main(int argc, char *argv[])
     FILE *fp;
     int dataAmount;
     int *data;
-    int *bucket;
     int max;
 
     if (argc <= 1)
@@ -53,12 +67,6 @@ int main(int argc, char *argv[])
         return 1;
     }
     dataAmount = atoi(argv[2]);
-    max = atoi(argv[3]);
-
-    bucket = (int *)malloc((max + 1) * sizeof(int));
-    for (int i = 0; i < max; i++){
-        bucket[i] = 0;
-    }
 
     data = (int *)malloc(dataAmount * sizeof(int));
     fp = fopen(datafile, "r");
@@ -68,7 +76,16 @@ int main(int argc, char *argv[])
     }
     fclose(fp);
 
-    double timeOfBucketSort = bucketSort(data, bucket, dataAmount, max);
+    max = data[0];
+    for (int i = 1; i < dataAmount; i++)
+    {
+        if (data[i] > max)
+        {
+            max = data[i];
+        }
+    }
+
+    double timeOfBucketSort = bucketSort(data, dataAmount, max);
     fprintf(stderr, "Bucket sort run time = %lf[sec]\n", timeOfBucketSort);
 
     free(data);
