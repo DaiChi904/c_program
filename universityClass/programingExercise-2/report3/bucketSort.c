@@ -15,12 +15,16 @@ double getTime()
 double bucketSort(int array[], int bucket[], int dataAmount, int max) {
     double startTime = getTime();
     for (int i = 0; i < dataAmount; i++) {
-        if (array[i] <= max) {
+        if (array[i] < max) {
             bucket[array[i]] = bucket[array[i]] + 1;
         }
     }
+    int index = 0;
     for (int i = 0; i < max; i++) {
-        array[i] = bucket[i];
+        for (int j = 0; j < bucket[i]; j++) {
+            array[index] = bucket[i];
+            index++;
+        }
     }
     double endTime = getTime();
 
@@ -51,7 +55,7 @@ int main(int argc, char *argv[])
     dataAmount = atoi(argv[2]);
     max = atoi(argv[3]);
 
-    bucket = (int *)malloc(max * sizeof(int) + 1);
+    bucket = (int *)malloc((max + 1) * sizeof(int));
     for (int i = 0; i < max; i++){
         bucket[i] = 0;
     }
