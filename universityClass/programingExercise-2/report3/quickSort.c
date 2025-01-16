@@ -59,7 +59,8 @@ double quickSort(int array[], int dataAmount)
 int main(int argc, char *argv[])
 {
     char *datafile;
-    FILE *fp;
+    char *outputfile = "quickSorted.dat"; // 出力ファイル名
+    FILE *fp, *outfp;
     int dataAmount;
     int *data;
 
@@ -87,6 +88,20 @@ int main(int argc, char *argv[])
 
     double timeOfQuickSort = quickSort(data, dataAmount);
     fprintf(stderr, "Quick sort run time = %lf[sec]\n", timeOfQuickSort);
+
+        // ソート結果をdatファイルに書き出す
+    outfp = fopen(outputfile, "w");
+    if (outfp == NULL)
+    {
+        fprintf(stderr, "##### Failed to open output file: %s\n", outputfile);
+        free(data);
+        return 1;
+    }
+    for (int i = 0; i < dataAmount; i++)
+    {
+        fprintf(outfp, "%d\n", data[i]);
+    }
+    fclose(outfp);
 
     free(data);
 

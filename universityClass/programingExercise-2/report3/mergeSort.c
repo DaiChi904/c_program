@@ -5,6 +5,15 @@
 
 int *gamma; // Temporal store exectuing merge sort.
 
+double getTime()
+{
+    struct timeval tp;
+    double ret;
+    gettimeofday(&tp, NULL);
+    ret = (double)(tp.tv_sec & 0x00ffffff) + (double)tp.tv_usec / 1000000;
+    return ret;
+}
+
 int *merge(int *alpha, int n, int *beta, int m)
 {
     int gammaInUse = 0;
