@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <sys/time.h>
 
-#define SMALL_N 50 // 小さい整数として50を定義
+#define SMALL_N 50
 
 double gettime()
 {
@@ -111,21 +111,32 @@ int lSelect(int *a, int n, int k)
 
 int main(int argc, char *argv[])
 {
-    if (argc <= 3)
+    if (argc <= 1)
     {
-        fprintf(stderr, "#### 使用法: %s <データファイル> <データ数> <k番目>\n", argv[0]);
+        fprintf(stderr, "#### Please specify file.\n");
         return 1;
     }
+    datafile = argv[1];
 
-    char *datafile = argv[1];
-    int n = atoi(argv[2]);
-    int k = atoi(argv[3]);
+    if (argc <= 2)
+    {
+        fprintf(stderr, "##### Please specify data amount.\n");
+        return 1;
+    }
+    n = atoi(argv[2]);
 
-    int *data = (int *)malloc(n * sizeof(int));
-    FILE *fp = fopen(datafile, "r");
+    if (argc <= 3)
+    {
+        fprintf(stderr, "#### Please specify the value(number) of the data which you want to search.\n");
+        return 1;
+    }
+    k = atoi(argv[3]);
+
+    data = (int *)malloc(n * sizeof(int));
+    fp = fopen(datafile, "r");
     if (!fp)
     {
-        fprintf(stderr, "#### ファイルを開けませんでした\n");
+        fprintf(stderr, "#### Failed to open the file.\n");
         free(data);
         return 1;
     }
@@ -140,8 +151,8 @@ int main(int argc, char *argv[])
     int answer = lSelect(data, n, k);
     double time_end = gettime();
 
-    printf("答え = %d\n", answer);
-    fprintf(stderr, "k番目選択の実行時間 = %lf[秒]\n", time_end - time_start);
+    printf("Answer = %d\n", answer);
+    fprintf(stderr, "Index of searched value = %d, Runtime = %lf[秒]\n", k, time_end - time_start);
 
     free(data);
     return 0;
