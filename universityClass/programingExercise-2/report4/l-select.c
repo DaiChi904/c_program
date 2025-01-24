@@ -66,13 +66,27 @@ int lSelect(int *a, int n, int k)
 
     for (int i = 0; i < n / 5; i++)
     {
-        int T[5];
+        int T[5] = {0};
+        int amount = 0;
         for (int j = 0; j < 5; j++)
         {
             T[j] = a[5 * i + j];
+            amount++;
         }
         m_sort(T, 0, 4);
-        Medians[i] = T[2];
+        switch (amount)
+        {
+        case 1:
+            Medians[i] = T[0];
+        case 2:
+            Medians[i] = T[0];
+        case 3:
+            Medians[i] = T[1];
+        case 4:
+            Medians[i] = T[1];
+        default:
+            Medians[i] = T[2];
+        }
     }
 
     int m = lSelect(Medians, n / 5, (n / 5) / 2);
@@ -111,6 +125,13 @@ int lSelect(int *a, int n, int k)
 
 int main(int argc, char *argv[])
 {
+    char *datafile;
+    FILE *fp;
+    int n;
+    int *data;
+    int k;
+    int i;
+
     if (argc <= 1)
     {
         fprintf(stderr, "#### Please specify file.\n");
