@@ -172,8 +172,8 @@ int main(int argc, char *argv[])
     int answer = lSelect(data, n, k);
     double time_end = gettime();
 
-    printf("Answer = %d\n", answer);
-    fprintf(stderr, "Index of searched value = %d, Runtime = %lf[秒]\n", k, time_end - time_start);
+    printf("答え = %d\n", answer);
+    fprintf(stderr, "k番目選択の実行時間 = %lf[秒]\n", time_end - time_start);
 
     free(data);
     return 0;
