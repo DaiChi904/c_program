@@ -160,7 +160,7 @@ int main(int argc, char *argv[])
     time_end = gettime();
 
     printf("Answer = %d\n", answer);
-    fprintf(stderr, "Index of searched value = %d, Runtime = %lf[秒]\n", k, time_end - time_start);
+    fprintf(stderr, "Index of searched value = %d, Runtime = %lf[sec]\n", k, time_end - time_start);
 
     free(data);
     return 0;
