@@ -9,16 +9,11 @@ typedef enum token {
   PLUS, 
   MINUS, 
   TIMES, 
-  DIV,
-  CONC, 
+  DIV, 
   LPAR, 
   RPAR, 
-  NUMBER,
-  VERT,
-  LETTER, 
-  EOEXPR,
-  EPSILON,
-  EOREG
+  NUMBER, 
+  EOEXPR 
 } token;
 
 /* from main.c */
