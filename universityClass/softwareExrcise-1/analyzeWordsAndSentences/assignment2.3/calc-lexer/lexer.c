@@ -46,23 +46,9 @@ void get_token()
     case '0':
       curr_token = EMPTY;
       break;
-    case '*':
-      curr_token = LETTER;
-      break;
-    case '.':
-      curr_token = LETTER;
-      break;
-    case '(':
-      curr_token = LETTER;
-      break;
-    case ')':
-      curr_token = LETTER;
-      break;
-    case '|':
-      curr_token = LETTER;
-      break;
     default:
-      fatal_error("Invalid escape sequence");
+      curr_token = LETTER;
+      break;
     }
   }
   else
