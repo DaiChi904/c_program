@@ -12,7 +12,7 @@
 
 void fatal_error(char *s); /* エラーメッセージを表示して終了 */
 
-int debug = 1;     /* デバッグ情報を表示する(1)/しない(0) */
+int debug = 0;     /* デバッグ情報を表示する(1)/しない(0) */
 char *reg_string;  /* 正規表現文字列 */
 
 int main(int argc, char *argv[])
