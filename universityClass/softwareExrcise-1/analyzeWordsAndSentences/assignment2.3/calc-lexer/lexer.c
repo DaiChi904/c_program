@@ -71,7 +71,7 @@ void get_token()
       curr_token = VERT;
       break;
     default:
-      if (isalpha(c) || isdigit(c))
+      if (isalpha(c) || isdigit(c) || c == ' ')
       {
         curr_token = LETTER;
       }
