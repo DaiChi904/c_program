@@ -1,13 +1,13 @@
 /*
  * lexer.c
  *
- *   算術式の字句解析ルーチン
+ *   字句解析ルーチン
  *
  */
 #include <stdio.h>  /* fprintf */
 #include <ctype.h>  /* isdigit */
 #include <stdlib.h> /* atoi */
-#include "calc.h"
+#include "regmatch.h"
 
 token curr_token; /* 1番最近に読んだトークン */
 char token_val;    /* トークンの意味値 */

@@ -1,14 +1,14 @@
 /*
  * main.c
  *  
- *   calc プログラムのメインルーチン
+ *   字句解析プログラムのメインルーチン
  *  
  *
  */
 
 #include <stdio.h>  /* fprintf */
 #include <stdlib.h>  /* exit */
-#include "calc.h"
+#include "regmatch.h"
 
 void fatal_error(char *s); /* エラーメッセージを表示して終了 */
 

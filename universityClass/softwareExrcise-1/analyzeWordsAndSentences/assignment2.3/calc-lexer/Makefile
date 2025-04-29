@@ -8,14 +8,14 @@ CC = gcc
 CFLAGS = -g -Wall -pedantic
 
 OBJS = main.o lexer.o
-TARGET = calc
+TARGET = regmatch
 
 # 依存関係とターゲットの構築ルール
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET) $(LIBRARIES)
 
-main.o: calc.h 
-lexer.o: calc.h 
+main.o: regmatch.h 
+lexer.o: regmatch.h 
 
 clean: 
 	rm -f $(OBJS) *~ $(TARGET) 
