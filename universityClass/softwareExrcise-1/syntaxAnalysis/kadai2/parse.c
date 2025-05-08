@@ -1,6 +1,6 @@
 /*
  * parse.c
- *  
+ *
  *     正規表現の構文解析ルーチン
  *
  *
@@ -10,18 +10,17 @@
 #include <stdlib.h>
 #include "regmatch.h"
 
-int parse(void);                  /* 構文解析して正規表現を評価 */
-void parse_error(void);           /* 構文エラーで終了 */
-ptree *eval_expr(void);           /* expr を評価 */
+int parse(void);        /* 構文解析して正規表現を評価 */
+void parse_error(void); /* 構文エラーで終了 */
+ptree *eval_expr(void); /* expr を評価 */
 
 ptree *eval_term(void);    /* term を評価 */
 ptree *eval_factor(void);  /* factor を評価 */
 ptree *eval_primary(void); /* primary を評価 */
 
 ptree *make_ptree(token tok, char val, ptree *left, ptree *right); /* 構文木を作成 */
-void print_ptree(ptree *root); /* 構文木を表示 */
-static void print_ptree_n(int n, ptree *root); /* print_ptree に使う補助関数 */
-
+void print_ptree(ptree *root);                                     /* 構文木を表示 */
+static void print_ptree_n(int n, ptree *root);                     /* print_ptree に使う補助関数 */
 
 /* parse: 正規表現を構文解析して構文木を生成，表示 */
 int parse(void)
@@ -31,9 +30,12 @@ int parse(void)
   get_token();
   root = eval_expr();
 
-  if (curr_token == EOREG) {
+  if (curr_token == EOREG)
+  {
     print_ptree(root);
-  } else {
+  }
+  else
+  {
     parse_error();
   }
 
@@ -72,7 +74,8 @@ ptree *make_ptree(token tok, char val, ptree *left, ptree *right)
 {
   ptree *root;
 
-  if ((root = (ptree *)malloc(sizeof(ptree))) == NULL) {
+  if ((root = (ptree *)malloc(sizeof(ptree))) == NULL)
+  {
     fatal_error("malloc error");
   }
 
@@ -97,18 +100,20 @@ void print_ptree_n(int n, ptree *root)
   if (root == NULL)
     return;
 
-  print_ptree_n(n+1,root->left);
+  print_ptree_n(n + 1, root->left);
 
-  for(i=0;i<n;i++)
+  for (i = 0; i < n; i++)
     printf("   ");
-  print_token(root->tok,root->val);
+  print_token(root->tok, root->val);
 
-  print_ptree_n(n+1,root->right);
+  print_ptree_n(n + 1, root->right);
 }
 
 void free_ptree(ptree *root)
 {
-  if (root->left)  free_ptree(root->left);
-  if (root->right) free_ptree(root->right);
+  if (root->left)
+    free_ptree(root->left);
+  if (root->right)
+    free_ptree(root->right);
   free(root);
 }

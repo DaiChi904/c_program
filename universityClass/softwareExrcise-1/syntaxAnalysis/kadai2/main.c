@@ -10,8 +10,8 @@
 #include <stdlib.h> /* exit */
 #include "regmatch.h"
 
-int debug = 0;     /* デバッグ情報を表示する(1)/しない(0) */
-char *reg_string;  /* 正規表現文字列 */
+int debug = 0;    /* デバッグ情報を表示する(1)/しない(0) */
+char *reg_string; /* 正規表現文字列 */
 
 int main(int argc, char *argv[])
 {
@@ -22,10 +22,10 @@ int main(int argc, char *argv[])
 
   reg_string = argv[1];
 
-  if (debug) 
+  if (debug)
     printf("Regular expression: %s\n", reg_string);
 
-  parse(); 
+  parse();
   return 0;
 }
 
